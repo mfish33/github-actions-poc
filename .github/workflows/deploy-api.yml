@@ -10,7 +10,7 @@ jobs:
   upload_api:
     runs-on: ubuntu-latest
     steps:
-      - uses: mfish33/reusable-action-poc
+      - uses: mfish33/reusable-action-poc@v1
         with:
           file-path: open-api.json
           api-key: blah blah blah
