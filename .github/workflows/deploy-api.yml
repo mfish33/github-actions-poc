@@ -1,0 +1,26 @@
+
+name: Upload Open API
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  upload_api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v23
+
+      - name: On Open API changed
+        if: contains(steps.changed-files.outputs.modified_files, 'open-api.json')
+        run: |
+          sudo apt-get install jq
+          export SPEC=`jq --raw-input --slurp < open-api.json`
+          curl -d "{\"spec\":$SPEC,\"apiKey\": \"blah-blah-blah\"}" -H 'Content-Type: application/json' https://8380-2600-387-1-813-00-72.ngrok.io/api-upload
