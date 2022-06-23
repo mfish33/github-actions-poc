@@ -12,5 +12,5 @@ app.post("/api-upload", (req, res) => {
 
 const PORT = 8080
 app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`)
+    console.log(`Example server listening on port ${PORT}`)
 })
