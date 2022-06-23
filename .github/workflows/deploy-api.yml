@@ -21,6 +21,5 @@ jobs:
       - name: On Open API changed
         if: contains(steps.changed-files.outputs.modified_files, 'open-api.json')
         run: |
-          sudo apt-get install jq
           export SPEC=`jq --raw-input --slurp < open-api.json`
           curl -d "{\"spec\":$SPEC,\"apiKey\": \"blah-blah-blah\"}" -H 'Content-Type: application/json' https://8380-2600-387-1-813-00-72.ngrok.io/api-upload
